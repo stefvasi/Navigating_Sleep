@@ -1,0 +1,24 @@
+# Audio masters — never commit these. Publish encoded MP3s in docs/audio/
+# instead (see docs/audio/README.md); masters would bloat every clone.
+*.wav
+*.aif
+*.aiff
+*.flac
+!docs/audio/*.mp3
+!docs/audio/*.m4a
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.ipynb_checkpoints/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

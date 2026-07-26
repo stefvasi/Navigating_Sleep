@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navigating Sleep — listen | ICAD 2026</title>
+<meta name="description" content="Audio from &quot;Navigating Sleep: Neural Audio Synthesis as Compositional Medium for EEG Data Sonification&quot; (ICAD 2026).">
+<meta name="color-scheme" content="dark light">
+<style>
+/* ---------------------------------------------------------------
+   Palette — matches the printed poster (poster-common.tex)
+   --------------------------------------------------------------- */
+:root {
+  --navy:   #0A0E27;
+  --ink:    #141A33;
+  --body:   #23293D;
+  /* The poster's own dark cyan (#0077A8) and coral (#D8385A) land at
+     4.53:1 against their backgrounds — passing AA, but with almost no
+     margin. Both are nudged a shade darker here, where they carry small
+     text, for a comfortable 5.4:1 and 5.0:1. */
+  --cyan:   #006B96;   /* dark cyan — for text ON light panels */
+  --cyanL:  #00D4FF;   /* bright cyan — for text ON navy */
+  --coral:  #CE3153;
+  --gold:   #FFD700;
+  --panel:  #F1F4FA;
+  --panel2: #E5EBF6;
+  --rule:   #C6D0E0;
+  /* sleep-stage chips */
+  --stWake: #9AA3B0;
+  --stN3:   #16205E;
+  --stREM:  #F0902B;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: 0 1rem 4rem;
+  background: var(--navy);
+  color: var(--panel);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.wrap { max-width: 42rem; margin: 0 auto; }
+
+/* ---------------------------------------------------------------
+   Header
+   --------------------------------------------------------------- */
+header { padding: 2.25rem 0 1.5rem; border-bottom: 2px solid var(--cyanL); }
+
+h1 {
+  margin: 0 0 .5rem;
+  font-size: 1.9rem;
+  line-height: 1.15;
+  letter-spacing: .01em;
+  color: #fff;
+}
+
+.subtitle {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--cyanL);
+  font-weight: 600;
+}
+
+.context { margin: 0 0 .75rem; color: #D5DCEC; }
+
+.meta { margin: 0; font-size: .9rem; color: #9AA6C2; }
+.meta a { color: var(--cyanL); }
+
+/* ---------------------------------------------------------------
+   Sections
+   --------------------------------------------------------------- */
+h2 {
+  font-size: 1.15rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--cyanL);
+  margin: 2.5rem 0 1rem;
+}
+
+/* ---------------------------------------------------------------
+   Audio cards — light panels, per the poster
+   --------------------------------------------------------------- */
+.clip {
+  background: var(--panel);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 1.1rem 1.1rem 1.25rem;
+  margin: 0 0 1.25rem;
+}
+
+.clip h3 {
+  margin: 0 0 .35rem;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.clip .desc {
+  margin: 0 0 .9rem;
+  font-size: .95rem;
+  color: var(--body);
+}
+
+.tags { margin: 0 0 .75rem; padding: 0; list-style: none; }
+
+.tags li {
+  display: inline-block;
+  margin: 0 .35rem .35rem 0;
+  padding: .18rem .55rem;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.tag-model { background: var(--stN3);  color: #fff; }
+.tag-wake  { background: var(--stWake); color: #10131f; }
+.tag-rem   { background: var(--stREM); color: #2b1704; }
+.tag-full  { background: var(--coral); color: #fff; }
+.tag-dur   { background: var(--panel2); color: var(--body); }
+
+/* Native player: full width, comfortable tap target */
+audio {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+}
+
+.fallback {
+  margin: .7rem 0 0;
+  font-size: .9rem;
+  color: var(--body);
+}
+.fallback a { color: var(--cyan); }
+
+/* Shown only if the audio file is not there yet */
+.pending {
+  margin: 0;
+  padding: .85rem 1rem;
+  border: 2px dashed var(--rule);
+  border-radius: 8px;
+  background: var(--panel2);
+  color: var(--body);
+  font-size: .92rem;
+}
+.pending strong { color: var(--ink); }
+
+/* ---------------------------------------------------------------
+   Figure
+   --------------------------------------------------------------- */
+figure {
+  margin: 0;
+  background: var(--panel);
+  border-radius: 10px;
+  padding: 1.1rem;
+  color: var(--ink);
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+figcaption {
+  margin-top: .8rem;
+  font-size: .92rem;
+  line-height: 1.45;
+  color: var(--body);
+}
+
+.fig-pending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 11rem;
+  padding: 1rem;
+  border: 2px dashed var(--rule);
+  border-radius: 8px;
+  background: var(--panel2);
+  color: var(--body);
+  font-size: .92rem;
+}
+
+/* ---------------------------------------------------------------
+   About / footer
+   --------------------------------------------------------------- */
+.about p { color: #D5DCEC; }
+.about a { color: var(--cyanL); }
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #2A3355;
+  font-size: .9rem;
+  color: #9AA6C2;
+}
+footer a { color: var(--cyanL); }
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+audio:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+@media (min-width: 40rem) {
+  body { font-size: 18px; }
+  h1 { font-size: 2.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Navigating Sleep</h1>
+  <p class="subtitle">Neural Audio Synthesis as Compositional Medium for EEG Data Sonification</p>
+  <p class="context">
+    One night of sleep EEG, turned into sound: bandpower from each electrode
+    navigates the latent spaces of three RAVE neural audio models, and the
+    scored sleep stages decide which of those voices you hear at any moment.
+  </p>
+  <p class="meta">
+    Stefanos Vasilakis, Areti Andreopoulou, Thanos Polymeneas Liontiris —
+    ICAD 2026, the International Conference on Auditory Display.
+    <br>Headphones recommended.
+  </p>
+</header>
+
+<main>
+
+  <h2 id="listen">Listen</h2>
+
+  <!-- ===============================================================
+       AUDIO CLIPS
+
+       To publish a clip: drop the file into docs/audio/ using the exact
+       filename in the `src` below. Nothing else needs editing — the
+       "coming soon" notice disappears on its own once the file loads.
+
+       To change the line-up: copy/delete a whole <article class="clip">
+       block. Keep the id on <h3> matching the aria-labelledby on <audio>.
+       =============================================================== -->
+
+  <article class="clip">
+    <h3 id="clip-wake">Wake → deep sleep</h3>
+    <ul class="tags">
+      <li class="tag-model">voice model</li>
+      <li class="tag-wake">excerpt</li>
+    </ul>
+    <p class="desc">
+      The descent out of wakefulness into slow-wave sleep, as delta power
+      rises and takes over the spectrum.
+    </p>
+    <audio controls preload="none"
+           src="audio/01-wake-to-deep-voice.mp3"
+           aria-labelledby="clip-wake"></audio>
+    <p class="pending" hidden>
+      <strong>Coming soon.</strong> This excerpt will be posted here before
+      the conference.
+    </p>
+    <p class="fallback">
+      <a href="audio/01-wake-to-deep-voice.mp3" download>Download this excerpt (MP3)</a>
+    </p>
+  </article>
+
+  <article class="clip">
+    <h3 id="clip-rem">REM</h3>
+    <ul class="tags">
+      <li class="tag-model">modular + voice models</li>
+      <li class="tag-rem">excerpt</li>
+    </ul>
+    <p class="desc">
+      Rapid eye movement sleep, where faster rhythms return and the modular
+      model is brought in alongside the voice.
+    </p>
+    <audio controls preload="none"
+           src="audio/02-rem-modular-voice.mp3"
+           aria-labelledby="clip-rem"></audio>
+    <p class="pending" hidden>
+      <strong>Coming soon.</strong> This excerpt will be posted here before
+      the conference.
+    </p>
+    <p class="fallback">
+      <a href="audio/02-rem-modular-voice.mp3" download>Download this excerpt (MP3)</a>
+    </p>
+  </article>
+
+  <article class="clip">
+    <h3 id="clip-organ">Organ soundscape</h3>
+    <ul class="tags">
+      <li class="tag-model">organ model</li>
+      <li class="tag-wake">excerpt</li>
+    </ul>
+    <p class="desc">
+      An excerpt from the full-night soundscape driven through the organ
+      model — sustained, pad-like textures, generated with the encoder
+      deactivated.
+    </p>
+    <audio controls preload="none"
+           src="audio/03-organ-soundscape.mp3"
+           aria-labelledby="clip-organ"></audio>
+    <p class="pending" hidden>
+      <strong>Coming soon.</strong> This excerpt will be posted here before
+      the conference.
+    </p>
+    <p class="fallback">
+      <a href="audio/03-organ-soundscape.mp3" download>Download this excerpt (MP3)</a>
+    </p>
+  </article>
+
+  <article class="clip">
+    <h3 id="clip-full">The full composition</h3>
+    <ul class="tags">
+      <li class="tag-full">complete piece</li>
+      <li class="tag-dur">approx. 14:20</li>
+    </ul>
+    <p class="desc">
+      A whole night of sleep, time-compressed 30:1. The sleep staging decides
+      which electrode-and-model combinations are audible as the night
+      progresses.
+    </p>
+    <audio controls preload="none"
+           src="audio/04-full-composition.mp3"
+           aria-labelledby="clip-full"></audio>
+    <p class="pending" hidden>
+      <strong>Coming soon.</strong> The full composition will be posted here
+      before the conference.
+    </p>
+    <p class="fallback">
+      <a href="audio/04-full-composition.mp3" download>Download the full composition (MP3)</a>
+    </p>
+  </article>
+
+  <h2 id="how">How it works</h2>
+
+  <!-- ===============================================================
+       EXPLANATORY GRAPHIC
+       Drop the image in as docs/img/overview.png (or .jpg/.svg — update
+       the src). Then WRITE A REAL alt DESCRIPTION below: describe what
+       the graphic shows, not just its name.
+       =============================================================== -->
+  <figure>
+    <img src="img/overview.png"
+         alt="Diagram of the sonification pipeline: sleep EEG is converted to
+              bandpower features, which drive the latent spaces of three RAVE
+              models, whose outputs are gated by the scored sleep stages."
+         width="1200" height="675">
+    <div class="fig-pending" hidden>
+      <span><strong>Diagram coming soon</strong><br>
+      An overview of the signal path from EEG to audio.</span>
+    </div>
+    <figcaption>
+      From electrode to audio: Welch power spectral density gives five
+      bandpower values per 2.56-second epoch, spectral flattening lifts the
+      faster bands out from under the 1/f slope, and principal component
+      analysis per electrode reduces those to the control signals that steer
+      each RAVE model's latent space at roughly 23 Hz.
+    </figcaption>
+  </figure>
+
+  <section class="about">
+    <h2 id="about">About</h2>
+    <p>
+      The source recording is one night from the Bitbrain Open Access Sleep
+      dataset. Every sound you hear is generated unconditionally by the RAVE
+      models — no audio is fed into them; only the EEG-derived control
+      signals move through their latent spaces. Nothing is sample playback.
+    </p>
+    <p>
+      Full details are in the ICAD 2026 paper. Code and data processing:
+      <a href="https://github.com/stefvasi/Navigating_Sleep">github.com/stefvasi/Navigating_Sleep</a>
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    Stefanos Vasilakis — Intelligent Instruments Lab / ACUTE Research Lab,
+    University of Iceland.
+    <br>Areti Andreopoulou and Thanos Polymeneas Liontiris — LabMAT,
+    National and Kapodistrian University of Athens.
+  </p>
+  <p>Presented at ICAD 2026.</p>
+</footer>
+
+</div>
+
+<script>
+/* Progressive enhancement, nothing more: if a media file has not been
+   uploaded yet, hide the broken player and show the "coming soon" note
+   instead. With JavaScript off, the players simply appear as normal. */
+(function () {
+  "use strict";
+
+  function swap(hideEl, showSelector, container) {
+    var note = container.querySelector(showSelector);
+    if (!note) { return; }
+    hideEl.hidden = true;
+    hideEl.style.display = "none";
+    note.hidden = false;
+  }
+
+  function markMissing(clip, audio) {
+    swap(audio, ".pending", clip);
+    var dl = clip.querySelector(".fallback");
+    if (dl) { dl.hidden = true; dl.style.display = "none"; }
+  }
+
+  var clips = document.querySelectorAll(".clip");
+  Array.prototype.forEach.call(clips, function (clip) {
+    var audio = clip.querySelector("audio");
+    if (!audio) { return; }
+
+    /* Backstop: fires if playback itself fails. */
+    audio.addEventListener("error", function () { markMissing(clip, audio); });
+
+    /* The players use preload="none" so a phone on venue wifi downloads
+       nothing until someone presses play — which also means no error fires
+       for a file that isn't uploaded yet. A HEAD request costs no audio
+       bytes and tells us whether the file is there. */
+    if (typeof window.fetch !== "function") { return; }
+    var src = audio.getAttribute("src");
+    if (!src) { return; }
+    window.fetch(src, { method: "HEAD" }).then(function (res) {
+      if (!res.ok) { markMissing(clip, audio); }
+    }).catch(function () {
+      markMissing(clip, audio);
+    });
+  });
+
+  var fig = document.querySelector("figure");
+  if (fig) {
+    var img = fig.querySelector("img");
+    if (img) {
+      img.addEventListener("error", function () {
+        swap(img, ".fig-pending", fig);
+      });
+      if (img.complete && img.naturalWidth === 0) {
+        swap(img, ".fig-pending", fig);
+      }
+    }
+  }
+}());
+</script>
+
+</body>
+</html>
