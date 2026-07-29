@@ -85,6 +85,34 @@ h2 {
   margin: 2.5rem 0 1rem;
 }
 
+/* Short intro under a section heading, on the navy background */
+.lead {
+  margin: -.35rem 0 1.1rem;
+  font-size: .95rem;
+  color: #D5DCEC;
+}
+
+/* Sub-heading inside a section, on the navy background */
+h3.sub {
+  margin: 2rem 0 .9rem;
+  font-size: 1.05rem;
+  color: #fff;
+}
+
+/* Available to screen readers, invisible on screen. The stage table draws
+   on/off as a dot or a dash; this gives the same information to someone
+   who cannot see the glyph. */
+.vh {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ---------------------------------------------------------------
    Audio cards — light panels, per the poster
    --------------------------------------------------------------- */
@@ -134,6 +162,26 @@ audio {
   width: 100%;
   min-height: 44px;
   margin: 0;
+}
+
+/* An excerpt card carries the same moment through all three renders, so
+   each player is labelled with the render it belongs to. */
+.renders { margin: 0; }
+
+.render + .render {
+  margin-top: .6rem;
+  padding-top: .6rem;
+  border-top: 1px solid var(--rule);
+}
+
+.rlabel {
+  display: block;
+  margin: 0 0 .25rem;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--cyan);
 }
 
 .fallback {
@@ -193,6 +241,26 @@ figcaption {
   color: var(--body);
   font-size: .92rem;
 }
+
+/* The diagram and the stage table bring their own dark backgrounds, sized
+   and coloured for the navy page. Painting the usual light panel behind
+   them would box a dark card inside a white frame — and would put the
+   table's light text on a light background. So these two sit bare. */
+figure.bare {
+  background: none;
+  padding: 0;
+  color: inherit;
+  border-radius: 0;
+}
+
+figure.bare figcaption { color: #D5DCEC; }
+
+figure.bare .fig-pending {
+  border-color: #2A3355;
+  background: var(--ink);
+  color: #D5DCEC;
+}
+figure.bare .fig-pending strong { color: #fff; }
 
 /* ---------------------------------------------------------------
    About / footer
@@ -256,50 +324,61 @@ audio:focus-visible {
        "coming soon" notice disappears on its own once the file loads.
 
        To change the line-up: copy/delete a whole <article class="clip">
-       block. Keep the id on <h3> matching the aria-labelledby on <audio>.
+       block. Keep the id on <h3> matching the aria-labelledby on <audio>,
+       and keep the `src` and the download link on the same filename.
        =============================================================== -->
 
+  <p class="lead">
+    Three full-length pieces, each a whole night of sleep time-compressed
+    30:1. They run about fourteen and a half minutes; the excerpts below are
+    the way in if you are standing at the poster.
+  </p>
+
   <article class="clip">
-    <h3 id="clip-wake">Wake → deep sleep</h3>
+    <h3 id="clip-full">The full composition</h3>
     <ul class="tags">
-      <li class="tag-model">voice model</li>
-      <li class="tag-wake">excerpt</li>
+      <li class="tag-full">complete piece</li>
+      <li class="tag-dur">14:28</li>
     </ul>
     <p class="desc">
-      The descent out of wakefulness into slow-wave sleep, as delta power
-      rises and takes over the spectrum.
+      The voice and modular models, gated against each other by the scored
+      sleep stages: the stage decides which electrode-and-model pairings are
+      audible, so the texture turns over as the sleeper moves between stages.
+      The organ model is not part of this piece — it stands alone below.
     </p>
     <audio controls preload="none"
-           src="audio/01-wake-to-deep-voice.mp3"
-           aria-labelledby="clip-wake"></audio>
+           src="audio/Navigating-Sleep-composition.mp3"
+           aria-labelledby="clip-full"></audio>
     <p class="pending" hidden>
-      <strong>Coming soon.</strong> This excerpt will be posted here before
-      the conference.
+      <strong>Coming soon.</strong> The full composition will be posted here
+      before the conference.
     </p>
     <p class="fallback">
-      <a href="audio/01-wake-to-deep-voice.mp3" download>Download this excerpt (MP3)</a>
+      <a href="audio/Navigating-Sleep-composition.mp3" download>Download the full composition (MP3, 14 MB)</a>
     </p>
   </article>
 
   <article class="clip">
-    <h3 id="clip-rem">REM</h3>
+    <h3 id="clip-voices">Voices soundscape</h3>
     <ul class="tags">
-      <li class="tag-model">modular + voice models</li>
-      <li class="tag-rem">excerpt</li>
+      <li class="tag-model">voice model</li>
+      <li class="tag-full">full night</li>
+      <li class="tag-dur">14:28</li>
     </ul>
     <p class="desc">
-      Rapid eye movement sleep, where faster rhythms return and the modular
-      model is brought in alongside the voice.
+      The same night carried entirely by the voice model — the whole
+      recording through one latent space, without the stage-driven switching
+      between models.
     </p>
     <audio controls preload="none"
-           src="audio/02-rem-modular-voice.mp3"
-           aria-labelledby="clip-rem"></audio>
+           src="audio/Navigating-Sleep-voices.mp3"
+           aria-labelledby="clip-voices"></audio>
     <p class="pending" hidden>
-      <strong>Coming soon.</strong> This excerpt will be posted here before
+      <strong>Coming soon.</strong> This piece will be posted here before
       the conference.
     </p>
     <p class="fallback">
-      <a href="audio/02-rem-modular-voice.mp3" download>Download this excerpt (MP3)</a>
+      <a href="audio/Navigating-Sleep-voices.mp3" download>Download the voices soundscape (MP3, 14 MB)</a>
     </p>
   </article>
 
@@ -307,45 +386,297 @@ audio:focus-visible {
     <h3 id="clip-organ">Organ soundscape</h3>
     <ul class="tags">
       <li class="tag-model">organ model</li>
-      <li class="tag-wake">excerpt</li>
+      <li class="tag-full">full night</li>
+      <li class="tag-dur">14:26</li>
     </ul>
     <p class="desc">
-      An excerpt from the full-night soundscape driven through the organ
-      model — sustained, pad-like textures, generated with the encoder
-      deactivated.
+      The night through the organ model — sustained, pad-like textures,
+      generated with the encoder deactivated.
     </p>
     <audio controls preload="none"
-           src="audio/03-organ-soundscape.mp3"
+           src="audio/Navigating-Sleep-organ.mp3"
            aria-labelledby="clip-organ"></audio>
+    <p class="pending" hidden>
+      <strong>Coming soon.</strong> This piece will be posted here before
+      the conference.
+    </p>
+    <p class="fallback">
+      <a href="audio/Navigating-Sleep-organ.mp3" download>Download the organ soundscape (MP3, 14 MB)</a>
+    </p>
+  </article>
+
+  <h2 id="excerpts">Excerpts</h2>
+
+  <p class="lead">
+    Seven passages from the composition, each cut around a sustained change
+    of sleep stage. Stage boundaries come from the three-scorer human
+    consensus scoring of the night. Times in brackets are positions in the
+    full composition.
+  </p>
+
+  <article class="clip">
+    <h3 id="clip-onset">Sleep onset</h3>
+    <ul class="tags">
+      <li class="tag-wake">wake &#8594; N1 &#8594; N2</li>
+      <li class="tag-dur">0:32</li>
+    </ul>
+    <p class="desc">
+      The first descent out of wakefulness [0:33]. Scoring here is unstable &#8212; the sleeper crosses into N1 at 0:41 and N2 at 0:48, then surfaces again &#8212; and that instability is audible as the texture keeps resettling.
+    </p>
+    <div class="renders">
+      <div class="render">
+        <span class="rlabel" id="r-onset-composition">composition</span>
+        <audio controls preload="none"
+               src="audio/01-sleep-onset.mp3"
+               aria-labelledby="clip-onset r-onset-composition"></audio>
+      </div>
+      <div class="render">
+        <span class="rlabel" id="r-onset-voices">voices</span>
+        <audio controls preload="none"
+               src="audio/01-sleep-onset-voices.mp3"
+               aria-labelledby="clip-onset r-onset-voices"></audio>
+      </div>
+      <div class="render">
+        <span class="rlabel" id="r-onset-organ">organ</span>
+        <audio controls preload="none"
+               src="audio/01-sleep-onset-organ.mp3"
+               aria-labelledby="clip-onset r-onset-organ"></audio>
+      </div>
+    </div>
     <p class="pending" hidden>
       <strong>Coming soon.</strong> This excerpt will be posted here before
       the conference.
     </p>
     <p class="fallback">
-      <a href="audio/03-organ-soundscape.mp3" download>Download this excerpt (MP3)</a>
+      Download: <a href="audio/01-sleep-onset.mp3" download>composition</a> &#183; <a href="audio/01-sleep-onset-voices.mp3" download>voices</a> &#183; <a href="audio/01-sleep-onset-organ.mp3" download>organ</a>
     </p>
   </article>
 
   <article class="clip">
-    <h3 id="clip-full">The full composition</h3>
+    <h3 id="clip-deep">First deep sleep</h3>
     <ul class="tags">
-      <li class="tag-full">complete piece</li>
-      <li class="tag-dur">approx. 14:20</li>
+      <li class="tag-model">N2 &#8594; N3</li>
+      <li class="tag-dur">0:28</li>
     </ul>
     <p class="desc">
-      A whole night of sleep, time-compressed 30:1. The sleep staging decides
-      which electrode-and-model combinations are audible as the night
-      progresses.
+      The first descent into slow-wave sleep [2:44], crossing into N3 at 2:54 as delta power rises and takes over the spectrum.
     </p>
-    <audio controls preload="none"
-           src="audio/04-full-composition.mp3"
-           aria-labelledby="clip-full"></audio>
+    <div class="renders">
+      <div class="render">
+        <span class="rlabel" id="r-deep-composition">composition</span>
+        <audio controls preload="none"
+               src="audio/02-first-deep-sleep.mp3"
+               aria-labelledby="clip-deep r-deep-composition"></audio>
+      </div>
+      <div class="render">
+        <span class="rlabel" id="r-deep-voices">voices</span>
+        <audio controls preload="none"
+               src="audio/02-first-deep-sleep-voices.mp3"
+               aria-labelledby="clip-deep r-deep-voices"></audio>
+      </div>
+      <div class="render">
+        <span class="rlabel" id="r-deep-organ">organ</span>
+        <audio controls preload="none"
+               src="audio/02-first-deep-sleep-organ.mp3"
+               aria-labelledby="clip-deep r-deep-organ"></audio>
+      </div>
+    </div>
     <p class="pending" hidden>
-      <strong>Coming soon.</strong> The full composition will be posted here
-      before the conference.
+      <strong>Coming soon.</strong> This excerpt will be posted here before
+      the conference.
     </p>
     <p class="fallback">
-      <a href="audio/04-full-composition.mp3" download>Download the full composition (MP3)</a>
+      Download: <a href="audio/02-first-deep-sleep.mp3" download>composition</a> &#183; <a href="audio/02-first-deep-sleep-voices.mp3" download>voices</a> &#183; <a href="audio/02-first-deep-sleep-organ.mp3" download>organ</a>
+    </p>
+  </article>
+
+  <article class="clip">
+    <h3 id="clip-rem">First REM</h3>
+    <ul class="tags">
+      <li class="tag-rem">N2 &#8594; REM</li>
+      <li class="tag-dur">0:37</li>
+    </ul>
+    <p class="desc">
+      The night's first rapid eye movement period [3:35], entered at 3:42. Faster rhythms return and the palette of models opens up again.
+    </p>
+    <div class="renders">
+      <div class="render">
+        <span class="rlabel" id="r-rem-composition">composition</span>
+        <audio controls preload="none"
+               src="audio/03-first-rem.mp3"
+               aria-labelledby="clip-rem r-rem-composition"></audio>
+      </div>
+      <div class="render">
+        <span class="rlabel" id="r-rem-voices">voices</span>
+        <audio controls preload="none"
+               src="audio/03-first-rem-voices.mp3"
+               aria-labelledby="clip-rem r-rem-voices"></audio>
+      </div>
+      <div class="render">
+        <span class="rlabel" id="r-rem-organ">organ</span>
+        <audio controls preload="none"
+               src="audio/03-first-rem-organ.mp3"
+               aria-labelledby="clip-rem r-rem-organ"></audio>
+      </div>
+    </div>
+    <p class="pending" hidden>
+      <strong>Coming soon.</strong> This excerpt will be posted here before
+      the conference.
+    </p>
+    <p class="fallback">
+      Download: <a href="audio/03-first-rem.mp3" download>composition</a> &#183; <a href="audio/03-first-rem-voices.mp3" download>voices</a> &#183; <a href="audio/03-first-rem-organ.mp3" download>organ</a>
+    </p>
+  </article>
+
+  <article class="clip">
+    <h3 id="clip-remlong">Sustained REM</h3>
+    <ul class="tags">
+      <li class="tag-rem">REM, 64 s block</li>
+      <li class="tag-dur">0:53</li>
+    </ul>
+    <p class="desc">
+      One of the night's longest unbroken REM stretches [6:12], beginning at 6:19 &#8212; long enough to hear the material develop rather than just change.
+    </p>
+    <div class="renders">
+      <div class="render">
+        <span class="rlabel" id="r-remlong-composition">composition</span>
+        <audio controls preload="none"
+               src="audio/04-sustained-rem.mp3"
+               aria-labelledby="clip-remlong r-remlong-composition"></audio>
+      </div>
+      <div class="render">
+        <span class="rlabel" id="r-remlong-voices">voices</span>
+        <audio controls preload="none"
+               src="audio/04-sustained-rem-voices.mp3"
+               aria-labelledby="clip-remlong r-remlong-voices"></audio>
+      </div>
+      <div class="render">
+        <span class="rlabel" id="r-remlong-organ">organ</span>
+        <audio controls preload="none"
+               src="audio/04-sustained-rem-organ.mp3"
+               aria-labelledby="clip-remlong r-remlong-organ"></audio>
+      </div>
+    </div>
+    <p class="pending" hidden>
+      <strong>Coming soon.</strong> This excerpt will be posted here before
+      the conference.
+    </p>
+    <p class="fallback">
+      Download: <a href="audio/04-sustained-rem.mp3" download>composition</a> &#183; <a href="audio/04-sustained-rem-voices.mp3" download>voices</a> &#183; <a href="audio/04-sustained-rem-organ.mp3" download>organ</a>
+    </p>
+  </article>
+
+  <article class="clip">
+    <h3 id="clip-arousal">Deep sleep &#8594; arousal</h3>
+    <ul class="tags">
+      <li class="tag-wake">N2 &#8594; N3 &#8594; wake</li>
+      <li class="tag-dur">0:45</li>
+    </ul>
+    <p class="desc">
+      The night's longest stretch of slow-wave sleep [12:30], entered at 12:38 and broken by an arousal to wake at 13:10 &#8212; the sharpest stage change in the piece.
+    </p>
+    <div class="renders">
+      <div class="render">
+        <span class="rlabel" id="r-arousal-composition">composition</span>
+        <audio controls preload="none"
+               src="audio/05-deep-to-arousal.mp3"
+               aria-labelledby="clip-arousal r-arousal-composition"></audio>
+      </div>
+      <div class="render">
+        <span class="rlabel" id="r-arousal-voices">voices</span>
+        <audio controls preload="none"
+               src="audio/05-deep-to-arousal-voices.mp3"
+               aria-labelledby="clip-arousal r-arousal-voices"></audio>
+      </div>
+      <div class="render">
+        <span class="rlabel" id="r-arousal-organ">organ</span>
+        <audio controls preload="none"
+               src="audio/05-deep-to-arousal-organ.mp3"
+               aria-labelledby="clip-arousal r-arousal-organ"></audio>
+      </div>
+    </div>
+    <p class="pending" hidden>
+      <strong>Coming soon.</strong> This excerpt will be posted here before
+      the conference.
+    </p>
+    <p class="fallback">
+      Download: <a href="audio/05-deep-to-arousal.mp3" download>composition</a> &#183; <a href="audio/05-deep-to-arousal-voices.mp3" download>voices</a> &#183; <a href="audio/05-deep-to-arousal-organ.mp3" download>organ</a>
+    </p>
+  </article>
+
+  <article class="clip">
+    <h3 id="clip-ending">Ending in REM</h3>
+    <ul class="tags">
+      <li class="tag-rem">N2 &#8594; REM</li>
+      <li class="tag-dur">0:28</li>
+    </ul>
+    <p class="desc">
+      How the piece closes [13:52]: a last crossing into REM at 13:58, running to the end of the night.
+    </p>
+    <div class="renders">
+      <div class="render">
+        <span class="rlabel" id="r-ending-composition">composition</span>
+        <audio controls preload="none"
+               src="audio/06-ending-in-rem.mp3"
+               aria-labelledby="clip-ending r-ending-composition"></audio>
+      </div>
+      <div class="render">
+        <span class="rlabel" id="r-ending-voices">voices</span>
+        <audio controls preload="none"
+               src="audio/06-ending-in-rem-voices.mp3"
+               aria-labelledby="clip-ending r-ending-voices"></audio>
+      </div>
+      <div class="render">
+        <span class="rlabel" id="r-ending-organ">organ</span>
+        <audio controls preload="none"
+               src="audio/06-ending-in-rem-organ.mp3"
+               aria-labelledby="clip-ending r-ending-organ"></audio>
+      </div>
+    </div>
+    <p class="pending" hidden>
+      <strong>Coming soon.</strong> This excerpt will be posted here before
+      the conference.
+    </p>
+    <p class="fallback">
+      Download: <a href="audio/06-ending-in-rem.mp3" download>composition</a> &#183; <a href="audio/06-ending-in-rem-voices.mp3" download>voices</a> &#183; <a href="audio/06-ending-in-rem-organ.mp3" download>organ</a>
+    </p>
+  </article>
+
+  <article class="clip">
+    <h3 id="clip-cycle">A full NREM&#8211;REM cycle</h3>
+    <ul class="tags">
+      <li class="tag-full">wake &#8594; N2 &#8594; N3 &#8594; N2 &#8594; REM</li>
+      <li class="tag-dur">2:37</li>
+    </ul>
+    <p class="desc">
+      One complete sleep cycle end to end [4:46] &#8212; down through N2 into slow-wave sleep at 5:22, back up to N2 at 5:43, into REM at 6:19, and out again at 7:23. The longest excerpt, and the one that shows the architecture of the night rather than a single boundary.
+    </p>
+    <div class="renders">
+      <div class="render">
+        <span class="rlabel" id="r-cycle-composition">composition</span>
+        <audio controls preload="none"
+               src="audio/07-full-cycle.mp3"
+               aria-labelledby="clip-cycle r-cycle-composition"></audio>
+      </div>
+      <div class="render">
+        <span class="rlabel" id="r-cycle-voices">voices</span>
+        <audio controls preload="none"
+               src="audio/07-full-cycle-voices.mp3"
+               aria-labelledby="clip-cycle r-cycle-voices"></audio>
+      </div>
+      <div class="render">
+        <span class="rlabel" id="r-cycle-organ">organ</span>
+        <audio controls preload="none"
+               src="audio/07-full-cycle-organ.mp3"
+               aria-labelledby="clip-cycle r-cycle-organ"></audio>
+      </div>
+    </div>
+    <p class="pending" hidden>
+      <strong>Coming soon.</strong> This excerpt will be posted here before
+      the conference.
+    </p>
+    <p class="fallback">
+      Download: <a href="audio/07-full-cycle.mp3" download>composition</a> &#183; <a href="audio/07-full-cycle-voices.mp3" download>voices</a> &#183; <a href="audio/07-full-cycle-organ.mp3" download>organ</a>
     </p>
   </article>
 
@@ -353,16 +684,27 @@ audio:focus-visible {
 
   <!-- ===============================================================
        EXPLANATORY GRAPHIC
-       Drop the image in as docs/img/overview.png (or .jpg/.svg — update
-       the src). Then WRITE A REAL alt DESCRIPTION below: describe what
-       the graphic shows, not just its name.
+       Source lives in graphs/overview.svg; this is a copy, because only
+       docs/ is published by GitHub Pages. Re-copy it after any edit:
+           cp graphs/overview.svg docs/img/overview.svg
+       width/height are the SVG's own intrinsic size (1000×1200) so the
+       page reserves the right box and doesn't jump while loading.
        =============================================================== -->
-  <figure>
-    <img src="img/overview.png"
-         alt="Diagram of the sonification pipeline: sleep EEG is converted to
-              bandpower features, which drive the latent spaces of three RAVE
-              models, whose outputs are gated by the scored sleep stages."
-         width="1200" height="675">
+  <figure class="bare">
+    <img src="img/overview.svg"
+         alt="A five-stage vertical pipeline. 1. Sleep EEG: one night, six
+              scalp electrodes (F3 C3 O1 F4 C4 O2), subject sub-19.
+              2. Spectral analysis: power in five EEG bands per electrode,
+              spectrally flattened. 3. Principal components: five per
+              electrode, tracking how each spectrum moves through the night.
+              4. RAVE, latent-space navigation: the components are written
+              into a neural model's latent space with the encoder bypassed,
+              so the sleep data becomes a position inside a learned sound.
+              5. Neural audio: the model synthesises sound, the whole night
+              compressed 30 to 1 into 14 minutes 20 seconds. A footnote: in
+              the composition, the current sleep stage selects which
+              electrode-to-model pairing you hear."
+         width="1000" height="1200">
     <div class="fig-pending" hidden>
       <span><strong>Diagram coming soon</strong><br>
       An overview of the signal path from EEG to audio.</span>
@@ -373,6 +715,67 @@ audio:focus-visible {
       faster bands out from under the 1/f slope, and principal component
       analysis per electrode reduces those to the control signals that steer
       each RAVE model's latent space at roughly 23 Hz.
+    </figcaption>
+  </figure>
+
+  <h3 class="sub">Which model sounds when</h3>
+
+  <!-- Stage-gating table, from graphs/composition-electrode-table.html.
+       Self-contained inline styles in the page palette; the on/off glyph
+       carries the meaning as well as the colour, so it stays readable
+       without colour. -->
+  <figure class="bare" style="margin:0 0 8px">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+    <table style="border-collapse:collapse;width:100%;min-width:460px;
+                  font:400 15px/1.4 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+                  color:#eef1f8">
+      <caption style="caption-side:top;text-align:left;color:#9aa3c0;font-size:13.5px;
+                      padding:0 0 12px">
+        Which electrode&#8211;model pair sounds in each sleep stage. Left/right
+        electrodes are panned across the stereo field.
+      </caption>
+      <thead>
+        <tr style="color:#9aa3c0;font-size:12px;letter-spacing:.10em;text-transform:uppercase">
+          <th scope="col" style="text-align:left;padding:8px 10px;border-bottom:1px solid #2a3358">Electrodes &amp; model</th>
+          <th scope="col" style="padding:8px 6px;border-bottom:1px solid #2a3358">Wake</th>
+          <th scope="col" style="padding:8px 6px;border-bottom:1px solid #2a3358">N1</th>
+          <th scope="col" style="padding:8px 6px;border-bottom:1px solid #2a3358">N2</th>
+          <th scope="col" style="padding:8px 6px;border-bottom:1px solid #2a3358">N3</th>
+          <th scope="col" style="padding:8px 6px;border-bottom:1px solid #2a3358">REM</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" style="text-align:left;font-weight:400;padding:9px 10px;border-bottom:1px solid #1e2543">F3&#8202;/&#8202;F4 &#183; <b style="color:#00D4FF">voice</b></th>
+          <td style="text-align:center;color:#00D4FF">&#9679;<span class="vh"> on</span></td><td style="text-align:center;color:#00D4FF">&#9679;<span class="vh"> on</span></td><td style="text-align:center;color:#00D4FF">&#9679;<span class="vh"> on</span></td><td style="text-align:center;color:#00D4FF">&#9679;<span class="vh"> on</span></td><td style="text-align:center;color:#00D4FF">&#9679;<span class="vh"> on</span></td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align:left;font-weight:400;padding:9px 10px;border-bottom:1px solid #1e2543">C3&#8202;/&#8202;C4 &#183; <b style="color:#00D4FF">voice</b></th>
+          <td style="text-align:center;color:#00D4FF">&#9679;<span class="vh"> on</span></td><td style="text-align:center;color:#00D4FF">&#9679;<span class="vh"> on</span></td><td style="text-align:center;color:#00D4FF">&#9679;<span class="vh"> on</span></td><td style="text-align:center;color:#00D4FF">&#9679;<span class="vh"> on</span></td><td style="text-align:center;color:#00D4FF">&#9679;<span class="vh"> on</span></td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align:left;font-weight:400;padding:9px 10px;border-bottom:1px solid #1e2543">O1&#8202;/&#8202;O2 &#183; <b style="color:#00D4FF">voice</b></th>
+          <td style="text-align:center;color:#3a4570">&#8211;<span class="vh"> off</span></td><td style="text-align:center;color:#3a4570">&#8211;<span class="vh"> off</span></td><td style="text-align:center;color:#3a4570">&#8211;<span class="vh"> off</span></td><td style="text-align:center;color:#00D4FF">&#9679;<span class="vh"> on</span></td><td style="text-align:center;color:#00D4FF">&#9679;<span class="vh"> on</span></td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align:left;font-weight:400;padding:9px 10px;border-bottom:1px solid #1e2543">F3&#8202;/&#8202;F4 &#183; <b style="color:#FFD700">modular</b></th>
+          <td style="text-align:center;color:#3a4570">&#8211;<span class="vh"> off</span></td><td style="text-align:center;color:#FFD700">&#9679;<span class="vh"> on</span></td><td style="text-align:center;color:#3a4570">&#8211;<span class="vh"> off</span></td><td style="text-align:center;color:#3a4570">&#8211;<span class="vh"> off</span></td><td style="text-align:center;color:#3a4570">&#8211;<span class="vh"> off</span></td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align:left;font-weight:400;padding:9px 10px;border-bottom:1px solid #1e2543">C3&#8202;/&#8202;C4 &#183; <b style="color:#FFD700">modular</b></th>
+          <td style="text-align:center;color:#3a4570">&#8211;<span class="vh"> off</span></td><td style="text-align:center;color:#FFD700">&#9679;<span class="vh"> on</span></td><td style="text-align:center;color:#FFD700">&#9679;<span class="vh"> on</span></td><td style="text-align:center;color:#3a4570">&#8211;<span class="vh"> off</span></td><td style="text-align:center;color:#3a4570">&#8211;<span class="vh"> off</span></td>
+        </tr>
+        <tr>
+          <th scope="row" style="text-align:left;font-weight:400;padding:9px 10px">O1&#8202;/&#8202;O2 &#183; <b style="color:#FFD700">modular</b></th>
+          <td style="text-align:center;color:#3a4570">&#8211;<span class="vh"> off</span></td><td style="text-align:center;color:#3a4570">&#8211;<span class="vh"> off</span></td><td style="text-align:center;color:#3a4570">&#8211;<span class="vh"> off</span></td><td style="text-align:center;color:#3a4570">&#8211;<span class="vh"> off</span></td><td style="text-align:center;color:#FFD700">&#9679;<span class="vh"> on</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <figcaption>
+      <strong>voice</strong> is the choir RAVE model, <strong>modular</strong>
+      the mixtapes model. The organ model is not gated into the composition —
+      it is heard only in the standalone Organ soundscape above.
     </figcaption>
   </figure>
 
@@ -421,31 +824,55 @@ audio:focus-visible {
     note.hidden = false;
   }
 
+  function hide(el) {
+    if (el) { el.hidden = true; el.style.display = "none"; }
+  }
+
+  /* A card can hold several renders of the same excerpt. Drop just the
+     ones whose file is absent; only when every render of a card is gone
+     does the card fall back to its "coming soon" note. */
+  function markCard(clip) {
+    var players = clip.querySelectorAll("audio");
+    var live = 0;
+    Array.prototype.forEach.call(players, function (a) {
+      if (!a.dataset.missing) { live++; }
+    });
+    if (live > 0) { return; }
+    var note = clip.querySelector(".pending");
+    if (note) { note.hidden = false; }
+    hide(clip.querySelector(".renders"));
+    hide(clip.querySelector(".fallback"));
+  }
+
   function markMissing(clip, audio) {
-    swap(audio, ".pending", clip);
-    var dl = clip.querySelector(".fallback");
-    if (dl) { dl.hidden = true; dl.style.display = "none"; }
+    audio.dataset.missing = "1";
+    /* Remove the whole labelled row, not just the player, so a stray
+       label is never left pointing at nothing. */
+    hide(audio.closest(".render") || audio);
+    markCard(clip);
   }
 
   var clips = document.querySelectorAll(".clip");
   Array.prototype.forEach.call(clips, function (clip) {
-    var audio = clip.querySelector("audio");
-    if (!audio) { return; }
+    var players = clip.querySelectorAll("audio");
+    if (!players.length) { return; }
 
-    /* Backstop: fires if playback itself fails. */
-    audio.addEventListener("error", function () { markMissing(clip, audio); });
+    Array.prototype.forEach.call(players, function (audio) {
+      /* Backstop: fires if playback itself fails. */
+      audio.addEventListener("error", function () { markMissing(clip, audio); });
 
-    /* The players use preload="none" so a phone on venue wifi downloads
-       nothing until someone presses play — which also means no error fires
-       for a file that isn't uploaded yet. A HEAD request costs no audio
-       bytes and tells us whether the file is there. */
-    if (typeof window.fetch !== "function") { return; }
-    var src = audio.getAttribute("src");
-    if (!src) { return; }
-    window.fetch(src, { method: "HEAD" }).then(function (res) {
-      if (!res.ok) { markMissing(clip, audio); }
-    }).catch(function () {
-      markMissing(clip, audio);
+      /* The players use preload="none" so a phone on venue wifi downloads
+         nothing until someone presses play — which also means no error fires
+         for a file that isn't uploaded yet. A HEAD request costs no audio
+         bytes and tells us whether the file is there. */
+      if (typeof window.fetch !== "function") { return; }
+      var src = audio.getAttribute("src");
+      if (!src) { return; }
+      window.fetch(src, { method: "HEAD" }).then(function (res) {
+        if (!res.ok) { markMissing(clip, audio); }
+      }).catch(function () {
+        markMissing(clip, audio);
+      });
     });
   });
 

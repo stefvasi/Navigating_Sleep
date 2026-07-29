@@ -7,6 +7,11 @@
 !docs/audio/*.mp3
 !docs/audio/*.m4a
 
+# High-bitrate sources kept locally so clips can be re-cut without hunting
+# for the masters. Never published — the 128k encodes beside them are what
+# ships to Pages.
+docs/audio/_masters-320/
+
 # Python
 __pycache__/
 *.py[cod]

@@ -1,0 +1,60 @@
+# graphs/ — exports for the listen page
+
+Two assets for `docs/`, plus the integration details the page needs.
+
+## 1. `overview.svg` — the "How it works" diagram
+
+Vector, self-contained, dark to match the page. Fixes both follow-ups the page
+was waiting on:
+
+- **It's SVG, not PNG.** Point the `<img>` at `overview.svg` (or copy it to
+  `docs/img/overview.svg`). SVG scales crisp at any size and is ~4 KB — well
+  under the 500 KB target. If a raster is truly required, render at 1000×1200
+  with `rsvg-convert -w 1000 overview.svg -o overview.png` (or Inkscape).
+- **Intrinsic size: `width="1000" height="1200"`** (already set on the root
+  `<svg>`, 5:6 portrait). Use those exact numbers in the `<img>` `width`/`height`
+  so the page reserves the right box and doesn't jump while loading. If the page
+  currently hardcodes 1200×675, change it to 1000×1200.
+
+**Alt text** (replace the placeholder prose with this — it describes *this*
+graphic):
+
+> A five-stage vertical pipeline. 1. Sleep EEG: one night, six scalp electrodes
+> (F3 C3 O1 F4 C4 O2), subject sub-19. 2. Spectral analysis: power in five EEG
+> bands per electrode, spectrally flattened. 3. Principal components: five per
+> electrode, tracking how each spectrum moves through the night. 4. RAVE,
+> latent-space navigation: the components are written into a neural model's
+> latent space with the encoder bypassed, so the sleep data becomes a position
+> inside a learned sound. 5. Neural audio: the model synthesises sound, the
+> whole night compressed 30 to 1 into 14 minutes 20 seconds. A footnote: in the
+> composition, the current sleep stage selects which electrode-to-model pairing
+> you hear.
+
+## 2. `composition-electrode-table.html` — stage-gating table
+
+A self-contained HTML `<figure>` (inline styles, page palette, horizontal-scroll
+wrapper for narrow screens). Paste the block into `index.html` under the diagram.
+Meaning is carried by a filled-dot / dash glyph as well as colour, so it stays
+legible without colour.
+
+Which electrode–model pair sounds in each stage (● = on, – = off):
+
+```
+Electrodes & model   Wake  N1   N2   N3   REM
+F3/F4 · voice          ●    ●    ●    ●    ●
+C3/C4 · voice          ●    ●    ●    ●    ●
+O1/O2 · voice          –    –    –    ●    ●
+F3/F4 · modular        –    ●    –    –    –
+C3/C4 · modular        –    ●    ●    –    –
+O1/O2 · modular        –    –    –    –    ●
+```
+
+**"voice"** = the choir RAVE model; **"modular"** = the mixtapes RAVE model
+(the abstract's names for them). The organ model is *not* gated into the
+composition — it's only the standalone Organ soundscape. Left/right electrodes
+are panned across the stereo field.
+
+Source: the composition map in the thesis, reproduced from poster variant A
+(`…/Navigating_Sleep_icad2026_LATEX/poster/navigating_sleep_poster_a1.tex`,
+the stage matrix), cross-checked against the thesis presentation guide
+(Choir + Mixtapes; C3/C4 choir for the Wake→deep transition; O1/O2 for REM).

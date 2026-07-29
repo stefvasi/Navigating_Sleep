@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1200" width="1000" height="1200" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" role="img" aria-label="How it works: five-stage pipeline turning one night of sleep EEG into neural audio.">
+  <defs>
+    <style>
+      .title{font-weight:700}
+      .desc{fill:#9aa3c0}
+      .step{font-weight:700;fill:#5a6591;letter-spacing:.05em}
+    </style>
+  </defs>
+
+  <!-- backdrop -->
+  <rect x="0" y="0" width="1000" height="1200" rx="26" fill="#0d1228"/>
+
+  <!-- ============ CARD 1 · SLEEP EEG (coral) ============ -->
+  <g>
+    <rect x="70" y="44" width="860" height="150" rx="16" fill="#171e3d" stroke="#2a3358"/>
+    <rect x="70" y="44" width="9" height="150" rx="4" fill="#D8385A"/>
+    <text x="118" y="86" class="step" font-size="24">1</text>
+    <text x="118" y="126" class="title" font-size="44" fill="#FF6E8F">Sleep EEG</text>
+    <text x="118" y="166" class="desc" font-size="27">One full night · 6 scalp electrodes (F3 C3 O1 F4 C4 O2) · subject sub-19</text>
+  </g>
+  <path d="M500 200 l16 20 l-32 0 z" fill="#3a4570"/>
+
+  <!-- ============ CARD 2 · SPECTRAL ANALYSIS (cyan) ============ -->
+  <g>
+    <rect x="70" y="236" width="860" height="150" rx="16" fill="#171e3d" stroke="#2a3358"/>
+    <rect x="70" y="236" width="9" height="150" rx="4" fill="#00D4FF"/>
+    <text x="118" y="278" class="step" font-size="24">2</text>
+    <text x="118" y="318" class="title" font-size="44" fill="#00D4FF">Spectral analysis</text>
+    <text x="118" y="358" class="desc" font-size="27">Power in five EEG bands per electrode (&#948; &#952; &#945; &#963; &#946;), spectrally flattened</text>
+  </g>
+  <path d="M500 392 l16 20 l-32 0 z" fill="#3a4570"/>
+
+  <!-- ============ CARD 3 · PCA (cyan) ============ -->
+  <g>
+    <rect x="70" y="428" width="860" height="150" rx="16" fill="#171e3d" stroke="#2a3358"/>
+    <rect x="70" y="428" width="9" height="150" rx="4" fill="#00D4FF"/>
+    <text x="118" y="470" class="step" font-size="24">3</text>
+    <text x="118" y="510" class="title" font-size="44" fill="#00D4FF">Principal components</text>
+    <text x="118" y="550" class="desc" font-size="27">Five components per electrode track how each spectrum moves through the night</text>
+  </g>
+  <path d="M500 584 l16 20 l-32 0 z" fill="#3a4570"/>
+
+  <!-- ============ CARD 4 · RAVE latent navigation (gold) ============ -->
+  <g>
+    <rect x="70" y="620" width="860" height="196" rx="16" fill="#171e3d" stroke="#2a3358"/>
+    <rect x="70" y="620" width="9" height="196" rx="4" fill="#FFD700"/>
+    <text x="118" y="662" class="step" font-size="24">4</text>
+    <text x="118" y="702" class="title" font-size="42" fill="#FFD700">RAVE &#8212; latent-space navigation</text>
+    <text x="118" y="742" class="desc" font-size="27">The components are written into a neural model's latent space.</text>
+    <text x="118" y="776" class="desc" font-size="27">The encoder is bypassed &#8212; the sleep data itself becomes a</text>
+    <text x="118" y="810" class="desc" font-size="27">position inside a learned sound.</text>
+  </g>
+  <path d="M500 822 l16 20 l-32 0 z" fill="#3a4570"/>
+
+  <!-- ============ CARD 5 · NEURAL AUDIO (coral) ============ -->
+  <g>
+    <rect x="70" y="858" width="860" height="150" rx="16" fill="#171e3d" stroke="#2a3358"/>
+    <rect x="70" y="858" width="9" height="150" rx="4" fill="#D8385A"/>
+    <text x="118" y="900" class="step" font-size="24">5</text>
+    <text x="118" y="940" class="title" font-size="44" fill="#FF6E8F">Neural audio</text>
+    <text x="118" y="980" class="desc" font-size="27">The model synthesises sound. The whole night is compressed 30:1 &#8212; ~7 h into 14:20.</text>
+  </g>
+
+  <!-- ============ FOOTER NOTE · stage gating ============ -->
+  <rect x="70" y="1052" width="860" height="112" rx="16" fill="#1c1633" stroke="#4a3d16"/>
+  <rect x="70" y="1052" width="9" height="112" rx="4" fill="#FFD700"/>
+  <text x="118" y="1100" font-size="26" font-weight="700" fill="#FFD700">In the composition</text>
+  <text x="118" y="1138" font-size="26" fill="#cbd0e6">the current sleep stage selects which electrode &#8594; model pairing you hear.</text>
+</svg>
