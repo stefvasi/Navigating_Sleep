@@ -33,6 +33,11 @@
 
 * { box-sizing: border-box; }
 
+/* The browser's own [hidden] rule is display:none, but any author rule that
+   sets display beats it — .fig-pending sets display:flex, so its "coming
+   soon" box stayed on screen even while hidden. Enforce it here. */
+[hidden] { display: none !important; }
+
 html { -webkit-text-size-adjust: 100%; }
 
 body {
@@ -704,7 +709,7 @@ audio:focus-visible {
               compressed 30 to 1 into 14 minutes 20 seconds. A footnote: in
               the composition, the current sleep stage selects which
               electrode-to-model pairing you hear."
-         width="1000" height="1200">
+         width="1000" height="1398">
     <div class="fig-pending" hidden>
       <span><strong>Diagram coming soon</strong><br>
       An overview of the signal path from EEG to audio.</span>

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1200" width="1000" height="1200" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" role="img" aria-label="How it works: five-stage pipeline turning one night of sleep EEG into neural audio.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1398" width="1000" height="1398" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" role="img" aria-label="How it works: five-stage pipeline turning one night of sleep EEG into neural audio.">
   <defs>
     <style>
       .title{font-weight:700}
@@ -8,62 +8,67 @@
   </defs>
 
   <!-- backdrop -->
-  <rect x="0" y="0" width="1000" height="1200" rx="26" fill="#0d1228"/>
+  <rect x="0" y="0" width="1000" height="1398" rx="26" fill="#0d1228"/>
 
-  <!-- ============ CARD 1 · SLEEP EEG (coral) ============ -->
+  <!-- ============ CARD 1 · SLEEP EEG ============ -->
   <g>
-    <rect x="70" y="44" width="860" height="150" rx="16" fill="#171e3d" stroke="#2a3358"/>
-    <rect x="70" y="44" width="9" height="150" rx="4" fill="#D8385A"/>
+    <rect x="70" y="44" width="860" height="184" rx="16" fill="#171e3d" stroke="#2a3358"/>
+    <rect x="70" y="44" width="9" height="184" rx="4" fill="#D8385A"/>
     <text x="118" y="86" class="step" font-size="24">1</text>
     <text x="118" y="126" class="title" font-size="44" fill="#FF6E8F">Sleep EEG</text>
-    <text x="118" y="166" class="desc" font-size="27">One full night · 6 scalp electrodes (F3 C3 O1 F4 C4 O2) · subject sub-19</text>
+    <text x="118" y="166" class="desc" font-size="27">One full night · 6 scalp electrodes (F3 C3 O1 F4 C4 O2) ·</text>
+    <text x="118" y="200" class="desc" font-size="27">subject sub-19</text>
   </g>
-  <path d="M500 200 l16 20 l-32 0 z" fill="#3a4570"/>
+  <path d="M500 234 l16 20 l-32 0 z" fill="#3a4570"/>
 
-  <!-- ============ CARD 2 · SPECTRAL ANALYSIS (cyan) ============ -->
+  <!-- ============ CARD 2 · SPECTRAL ANALYSIS ============ -->
   <g>
-    <rect x="70" y="236" width="860" height="150" rx="16" fill="#171e3d" stroke="#2a3358"/>
-    <rect x="70" y="236" width="9" height="150" rx="4" fill="#00D4FF"/>
-    <text x="118" y="278" class="step" font-size="24">2</text>
-    <text x="118" y="318" class="title" font-size="44" fill="#00D4FF">Spectral analysis</text>
-    <text x="118" y="358" class="desc" font-size="27">Power in five EEG bands per electrode (&#948; &#952; &#945; &#963; &#946;), spectrally flattened</text>
+    <rect x="70" y="270" width="860" height="184" rx="16" fill="#171e3d" stroke="#2a3358"/>
+    <rect x="70" y="270" width="9" height="184" rx="4" fill="#00D4FF"/>
+    <text x="118" y="312" class="step" font-size="24">2</text>
+    <text x="118" y="352" class="title" font-size="44" fill="#00D4FF">Spectral analysis</text>
+    <text x="118" y="392" class="desc" font-size="27">Power in five EEG bands per electrode (δ θ α σ β),</text>
+    <text x="118" y="426" class="desc" font-size="27">spectrally flattened</text>
   </g>
-  <path d="M500 392 l16 20 l-32 0 z" fill="#3a4570"/>
+  <path d="M500 460 l16 20 l-32 0 z" fill="#3a4570"/>
 
-  <!-- ============ CARD 3 · PCA (cyan) ============ -->
+  <!-- ============ CARD 3 · PRINCIPAL COMPONENTS ============ -->
   <g>
-    <rect x="70" y="428" width="860" height="150" rx="16" fill="#171e3d" stroke="#2a3358"/>
-    <rect x="70" y="428" width="9" height="150" rx="4" fill="#00D4FF"/>
-    <text x="118" y="470" class="step" font-size="24">3</text>
-    <text x="118" y="510" class="title" font-size="44" fill="#00D4FF">Principal components</text>
-    <text x="118" y="550" class="desc" font-size="27">Five components per electrode track how each spectrum moves through the night</text>
+    <rect x="70" y="496" width="860" height="184" rx="16" fill="#171e3d" stroke="#2a3358"/>
+    <rect x="70" y="496" width="9" height="184" rx="4" fill="#00D4FF"/>
+    <text x="118" y="538" class="step" font-size="24">3</text>
+    <text x="118" y="578" class="title" font-size="44" fill="#00D4FF">Principal components</text>
+    <text x="118" y="618" class="desc" font-size="27">Five components per electrode track how each spectrum</text>
+    <text x="118" y="652" class="desc" font-size="27">moves through the night</text>
   </g>
-  <path d="M500 584 l16 20 l-32 0 z" fill="#3a4570"/>
+  <path d="M500 686 l16 20 l-32 0 z" fill="#3a4570"/>
 
-  <!-- ============ CARD 4 · RAVE latent navigation (gold) ============ -->
+  <!-- ============ CARD 4 · RAVE — LATENT-SPACE NAVIGATION ============ -->
   <g>
-    <rect x="70" y="620" width="860" height="196" rx="16" fill="#171e3d" stroke="#2a3358"/>
-    <rect x="70" y="620" width="9" height="196" rx="4" fill="#FFD700"/>
-    <text x="118" y="662" class="step" font-size="24">4</text>
-    <text x="118" y="702" class="title" font-size="42" fill="#FFD700">RAVE &#8212; latent-space navigation</text>
-    <text x="118" y="742" class="desc" font-size="27">The components are written into a neural model's latent space.</text>
-    <text x="118" y="776" class="desc" font-size="27">The encoder is bypassed &#8212; the sleep data itself becomes a</text>
-    <text x="118" y="810" class="desc" font-size="27">position inside a learned sound.</text>
+    <rect x="70" y="722" width="860" height="218" rx="16" fill="#171e3d" stroke="#2a3358"/>
+    <rect x="70" y="722" width="9" height="218" rx="4" fill="#FFD700"/>
+    <text x="118" y="764" class="step" font-size="24">4</text>
+    <text x="118" y="804" class="title" font-size="43" fill="#FFD700">RAVE — latent-space navigation</text>
+    <text x="118" y="844" class="desc" font-size="27">The components are written into a neural model's latent</text>
+    <text x="118" y="878" class="desc" font-size="27">space. The encoder is bypassed — the sleep data itself</text>
+    <text x="118" y="912" class="desc" font-size="27">becomes a position inside a learned sound.</text>
   </g>
-  <path d="M500 822 l16 20 l-32 0 z" fill="#3a4570"/>
+  <path d="M500 946 l16 20 l-32 0 z" fill="#3a4570"/>
 
-  <!-- ============ CARD 5 · NEURAL AUDIO (coral) ============ -->
+  <!-- ============ CARD 5 · NEURAL AUDIO ============ -->
   <g>
-    <rect x="70" y="858" width="860" height="150" rx="16" fill="#171e3d" stroke="#2a3358"/>
-    <rect x="70" y="858" width="9" height="150" rx="4" fill="#D8385A"/>
-    <text x="118" y="900" class="step" font-size="24">5</text>
-    <text x="118" y="940" class="title" font-size="44" fill="#FF6E8F">Neural audio</text>
-    <text x="118" y="980" class="desc" font-size="27">The model synthesises sound. The whole night is compressed 30:1 &#8212; ~7 h into 14:20.</text>
+    <rect x="70" y="982" width="860" height="184" rx="16" fill="#171e3d" stroke="#2a3358"/>
+    <rect x="70" y="982" width="9" height="184" rx="4" fill="#D8385A"/>
+    <text x="118" y="1024" class="step" font-size="24">5</text>
+    <text x="118" y="1064" class="title" font-size="44" fill="#FF6E8F">Neural audio</text>
+    <text x="118" y="1104" class="desc" font-size="27">The model synthesises sound. The whole night is</text>
+    <text x="118" y="1138" class="desc" font-size="27">compressed 30:1 — ~7 h into 14:20.</text>
   </g>
 
   <!-- ============ FOOTER NOTE · stage gating ============ -->
-  <rect x="70" y="1052" width="860" height="112" rx="16" fill="#1c1633" stroke="#4a3d16"/>
-  <rect x="70" y="1052" width="9" height="112" rx="4" fill="#FFD700"/>
-  <text x="118" y="1100" font-size="26" font-weight="700" fill="#FFD700">In the composition</text>
-  <text x="118" y="1138" font-size="26" fill="#cbd0e6">the current sleep stage selects which electrode &#8594; model pairing you hear.</text>
+  <rect x="70" y="1210" width="860" height="144" rx="16" fill="#1c1633" stroke="#4a3d16"/>
+  <rect x="70" y="1210" width="9" height="144" rx="4" fill="#FFD700"/>
+  <text x="118" y="1258" font-size="26" font-weight="700" fill="#FFD700">In the composition</text>
+  <text x="118" y="1296" font-size="26" fill="#cbd0e6">the current sleep stage selects which electrode → model</text>
+  <text x="118" y="1330" font-size="26" fill="#cbd0e6">pairing you hear.</text>
 </svg>
