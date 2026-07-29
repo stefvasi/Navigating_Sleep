@@ -38,43 +38,6 @@ The pipeline, in short:
 6. **Time** — 2.56-second epochs transmitted every 0.0853 s: a 30:1
    compression that fits a full night into roughly 14 minutes.
 
-## Repository layout
-
-```
-docs/            The public listen page (GitHub Pages serves this at the root URL)
-  index.html     Self-contained — no build step, no framework, no CDN
-  audio/         Audio files (see docs/audio/README.md for names and encoding)
-  img/           Explanatory graphic (see docs/img/README.md)
-```
-
-Project code lives alongside `docs/` in this repository.
-
-## Publishing the page
-
-GitHub Pages is configured as **Settings → Pages → Source: Deploy from a
-branch → `main` / `/docs`**. Push to `main` and the site rebuilds in about a
-minute.
-
-To preview locally before pushing:
-
-```bash
-python3 -m http.server 8000 --directory docs
-# then open http://localhost:8000/
-```
-
-## ⚠️ Do not rename this repository
-
-A printed conference poster carries QR codes baked to these exact strings:
-
-- `https://stefvasi.github.io/Navigating_Sleep/` (listen page)
-- `https://github.com/stefvasi/Navigating_Sleep` (this repository)
-
-Both are **case-sensitive** and neither can be changed once the poster is
-printed. Renaming the repository, renaming the account, or switching the Pages
-source away from `/docs` will break the QR codes at the conference. GitHub does
-redirect renamed repositories, but that redirect does not reliably cover the
-`github.io` Pages URL — so treat the name as fixed.
-
 ## Citation
 
 > Vasilakis, S., Andreopoulou, A., & Polymeneas Liontiris, T. (2026).
